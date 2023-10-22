@@ -23,11 +23,25 @@ function fetchBreedsAndSetPetsList() {
     .then(result => {
         petsList(result);
     })
-    .then(() => new SlimSelect({ select: `.breed-select` }))
+    .then(() => new SlimSelect({ select: `.breed-select`,
+
+    //placeholder ЧОМУСЬ НЕ ПРАЦЮЄ!!!
+ 
+    // data: [
+    //     {
+    //         'placeholder': true
+    //     }
+    // ],
+
+    // settings:{
+    //     placeholderText: `Select the breed`,
+    // }
+        
+     }))
     .catch(() => {
       Notiflix.Notify.failure(
         'Oops! Something went wrong! Try reloading the page!',
-        { timeout: 4000, userIcon: false }
+        { timeout: 5000, userIcon: false }
       );
     })
     .finally(() => {
