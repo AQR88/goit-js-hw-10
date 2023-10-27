@@ -23,18 +23,11 @@ function fetchBreedsAndSetPetsList() {
     .then(result => {
         petsList(result);
     })
-    .then(() => new SlimSelect({ select: `.breed-select`,
-
-    //placeholder ЧОМУСЬ НЕ ПРАЦЮЄ!!!
- 
-    // data: [
-    //     {
-    //         'placeholder': true
-    //     }
-    // ],
-
+    .then(() => new SlimSelect({ 
+      select: selector
+      
     // settings:{
-    //     placeholderText: `Select the breed`,
+    //     placeholderText: `Select the breed`
     // }
         
      }))
@@ -48,13 +41,19 @@ function fetchBreedsAndSetPetsList() {
         loader.classList.add('is-hidden');
     });
 }
+// function createSectionOptionMarkup(breed){
+//   const results = breed.map(({id, name}) =>
+//    `<option value="${id}">'${name}'</option>`);
+//    results.unshift('<option data-placeholder="true"></option>')
+// }
+
 selector.addEventListener('change', onSelect);
 
 function onSelect(evt) {
-  const selectBreedId = evt.currentTarget.value;
+  const breedId = evt.currentTarget.value;
   catInfo.classList.add('is-hidden');
 
-  fetchCatByBreed(selectBreedId)
+  fetchCatByBreed(breedId)
     .then(data => {
       markup(data);
       catInfo.classList.remove('is-hidden');
